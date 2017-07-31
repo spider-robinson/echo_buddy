@@ -27,4 +27,4 @@ The primary methods intended for users are
  which gives the entities most mentioned in articles related to the given topic
  
  
- The documentation for these and all other methods is available in the __init__.py file in this folder.
+ The documentation for these and all other methods is available in the `__init__.py` file in this folder.
