@@ -15,7 +15,7 @@ __all__ = ['get_text', 'collect', 'get_articles', 'tokenize', 'for_ner'
 'for_search', 'extract_single', 'create_database', 'update_single', 'new_database', 
 'write database', 'retrieve_database', 'clear_database', 'top_related', 'update', 
 'common_entities', 'collect_articles', 'get_data', 'initialize', 'clear_database',
-'q1', 'q2', 'q3']
+'news_about', 'entities_related', 'entities_about']
 
 db = retrieve_database()
 DATABASE_FR = "data/search_engine_data.txt"
@@ -775,14 +775,14 @@ def clear_database():
     clear_database()
 
 
-def q1(topic):
+def news_about(topic):
     topic = topic.lower()
     with open("data/search_engine_data.txt", "rb") as f:
         s_e = pickle.load(f)
     return s_e.first_sent_highest_doc(topic)
 
 
-def q2(ent, k=3):
+def related_entities(ent, k=3):
     """
     Returns the top k entities associated with ent.
 
@@ -804,7 +804,7 @@ def q2(ent, k=3):
     return top_related(ent.lower(), k=k)
 
 
-def q3(query, k=3):
+def entities_about(query, k=3):
     """
     Returns the top k entities associated with a query.
 
