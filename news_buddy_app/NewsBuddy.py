@@ -40,7 +40,7 @@ def question_two(entity, k=3):
 
 @ask.intent("ThirdIntent")
 def question_three(query, k=3):
-    result = news_buddy.entities_about(query, k=k)
+    result = News_Buddy.entities_about(query, k=k)
     if result is None:
         return statement("I couldn't find anything.")
     top_results = [i[0] for i in result]
@@ -51,5 +51,5 @@ def question_three(query, k=3):
 
 if __name__ == '__main__':
     # main.initialize()
-    main.get_data()
+    News_Buddy.get_data()
     app.run()

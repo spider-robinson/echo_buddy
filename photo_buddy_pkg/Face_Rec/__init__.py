@@ -41,8 +41,6 @@ if not os.path.exists(DATABASE_FR):
         with open(DATABASE_FR, "w+"):
             pass
 
-db = {}
-
 def get_img_from_camera():
     """
     Gets an image numpy array from the default camera
@@ -479,3 +477,5 @@ def add_file(filepath):
     det = find_faces(img)
     descriptor = find_descriptors(img, det)
     add_image(descriptor)
+
+db = retrieve_database()

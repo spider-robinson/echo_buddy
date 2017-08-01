@@ -5,9 +5,11 @@ import requests
 import sys
 import numpy as np
 import string
-from nltk import word_tokenize, sent_tokenize
+import os
+from nltk import word_tokenize, sent_tokenize, pos_tag, ne_chunk
 from collections import defaultdict, Counter
 from os import path, makedirs
+from pathlib import Path
 
 _path = Path(path.dirname(path.abspath(__file__)))
 
@@ -17,8 +19,13 @@ __all__ = ['get_text', 'collect', 'get_articles', 'tokenize', 'for_ner'
 'common_entities', 'collect_articles', 'get_data', 'initialize', 'clear_database',
 'news_about', 'entities_related', 'entities_about']
 
-db = retrieve_database()
 DATABASE_FR = "data/search_engine_data.txt"
+
+# creates data file if it doesn't exist
+if not os.path.exists(DATABASE_FR):
+        os.makedirs('/'.join(str.partition(DATABASE_FR, "/")[:-1]))
+        with open(DATABASE_FR, "w+"):
+            pass
 
 def get_text(link):
     response = requests.get(link)
@@ -538,25 +545,25 @@ class SearchEngine():
         return the_first_sent
 
 def extract_single(tokens, by_type=False):
-"""
-Gets the named entities in the list of tokens
+    """
+    Gets the named entities in the list of tokens
 
-Parameters:
------------
-tokens: list(str)
-    a tokenized document containing named entities
-by_type: bool, optional
-    whether or not differentiate between types of named entities
-    ***True currently not supported***
-    
-Returns:
---------
-out: list(str)
-    a list of the named entities in the document
-"""
+    Parameters:
+    -----------
+    tokens: list(str)
+        a tokenized document containing named entities
+    by_type: bool, optional
+        whether or not differentiate between types of named entities
+        ***True currently not supported***
+        
+    Returns:
+    --------
+    out: list(str)
+        a list of the named entities in the document
+    """
     entities = []
-    pos = nltk.pos_tag(tokens) # label parts of speech
-    named_entities = nltk.ne_chunk(pos, binary=not by_type) # identify named entities
+    pos = pos_tag(tokens) # label parts of speech
+    named_entities = ne_chunk(pos, binary=not by_type) # identify named entities
     for i in range(0, len(named_entities)):
         ents = named_entities.pop()
         if getattr(ents, 'label', None) != None and ents.label() == "NE": 
@@ -770,11 +777,6 @@ def initialize():
     with open("data/search_engine_data.txt", "wb") as f:
         pickle.dump(s_e, f)
 
-
-def clear_database():
-    clear_database()
-
-
 def news_about(topic):
     topic = topic.lower()
     with open("data/search_engine_data.txt", "rb") as f:
@@ -835,3 +837,5 @@ def entities_about(query, k=3):
         # raise Exception("Sorry, no matches were found with the query \' " + q + " \' ")
     tokens = [s_e.unfiltered_tokens[id] for id in ids]
     return common_entities(tokens, k=k)
+
+db = initialize()
