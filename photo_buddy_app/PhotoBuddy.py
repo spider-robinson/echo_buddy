@@ -34,6 +34,7 @@ def photo():
     Triggers when something synonymous to 'yes' is spoken.
     :return: Statement or question
     """
+    global add_flag
     if add_flag == 0:
         """
         If used at start of program to take photo.
@@ -93,7 +94,6 @@ def photo():
         """
         If 'yes' is said in response to being asked to be added to the database.
         """
-        global add_flag
         add_flag = 0
         Face_Rec.add_image(descs, name=name)
         return statement("Photo added.")
