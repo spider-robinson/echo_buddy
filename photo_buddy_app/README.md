@@ -57,6 +57,8 @@ Paste the following into the Intent Schema section in the Interaction Model:
 
 Say "Echo (or your chosen waitword), photo buddy" to trigger the skill. 
 
-Say "Yes" or some variant to let the program know to take your picture.
+Say "Yes" or some variant to let the program know to take your picture or, later, to update the database with photo just taken.
 
-Say "No" or some variant to tell the program to stop and exit.
+Say "No" or some variant to tell the program to stop and exit or, later, not to update the database.
+
+Use the Alexa App on your smartphone to view the picture with labeled faces!
