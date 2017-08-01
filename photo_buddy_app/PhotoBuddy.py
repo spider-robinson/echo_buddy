@@ -14,8 +14,6 @@ name = None
 @app.route('/')
 def homepage():
     return render_template("index.html")
-# TODO: ADD OPTION FOR SAVING PHOTO IN DATABASE
-
 
 @ask.launch
 def start_skill():

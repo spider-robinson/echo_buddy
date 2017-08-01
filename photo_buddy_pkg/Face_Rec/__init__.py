@@ -268,7 +268,7 @@ def retrieve_database():
     return db
 
 
-def write_database(self, filepath=DATABASE_FR):
+def write_database(filepath=DATABASE_FR):
 
     """
     Simple function that writes to the Database
@@ -478,4 +478,8 @@ def add_file(filepath):
     descriptor = find_descriptors(img, det)
     add_image(descriptor)
 
-db = retrieve_database()
+try:    
+    db = retrieve_database()
+except EOFError: # if the file is empty!
+    db = {}
+    write_database(filepath=DATABASE_FR)
