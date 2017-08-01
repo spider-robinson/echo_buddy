@@ -65,6 +65,7 @@ Paste the following into the Intent Schema section in the Interaction Model:
   GetEntity who's related to {America|entity}
   GetEntity who is related to {Russia|entity}
   GetEntity what entities are related to {NATO|entity}
+  GetEntity what is related to {Barack Obama|entity}
   GetEntity top {k} entities associated with {United Nations|entity}
   GetEntity top {k} entities related to {China|entity}
   GetEntity top {k} related to {Putin|entity}
@@ -95,4 +96,10 @@ Paste the following into the Intent Schema section in the Interaction Model:
   
 ## Usage
 
-TODO: Write up usage.
+Say "news buddy" to trigger this skill.
+
+Say "What's new with (a topic)" or something equivalent to get the title and first sentence of the article most related to that topic.
+
+Say "What is related to (an entity)" or something equivalent to get a list of entities related to the given entity.
+
+Say "What entities are related to the topic (a topic)" or something to get a list of entities related to the given topic.
