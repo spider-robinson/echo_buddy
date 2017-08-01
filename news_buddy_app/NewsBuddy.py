@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_ask import Ask, question, statement
 
-import main
+import News_Buddy
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -29,7 +29,7 @@ def question_one(topic):
 @ask.intent("GetEntity")
 def question_two(entity, k=3):
     main.get_data()
-    result = main.q2(entity, k=k)
+    result = News_Buddy.related_entities(entity, k=k)
     if result is None:
         return statement("I couldn't find anything.")
     top_results = [i[0] for i in result]
@@ -40,7 +40,7 @@ def question_two(entity, k=3):
 
 @ask.intent("ThirdIntent")
 def question_three(query, k=3):
-    result = main.q3(query, k=k)
+    result = news_buddy.entities_about(query, k=k)
     if result is None:
         return statement("I couldn't find anything.")
     top_results = [i[0] for i in result]
