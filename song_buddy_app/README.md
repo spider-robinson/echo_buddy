@@ -59,4 +59,4 @@ Say "Echo (or your chosen waitword), song buddy" to trigger the skill.
 
 Say "Yes" or some variant to let the program know to start recording your song snippet for seven seconds.
 
-Say "No" or some variante to tell the program to stop and exit.
+Say "No" or some variant to tell the program to stop and exit.
