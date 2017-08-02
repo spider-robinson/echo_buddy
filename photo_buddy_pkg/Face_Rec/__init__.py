@@ -460,6 +460,26 @@ def go():
     url = draw_faces(dets, compared, img)
     return compared, img, url, descs
 
+def go_friend():
+    """
+    Takes a picture from the configured camera and returns descs, names
+    Parameters:
+    -----------
+    None
+
+    Returns:
+    --------
+    compared: list of strings
+        Names of everyone found in photo.
+    descs: list of numpy arrays
+        Face descriptors.
+    """
+    img = get_img_from_camera()
+    dets = find_faces(img)
+    descs = find_descriptors(img, dets)
+    compared = compare_faces(descs, db)
+    return compared, descs
+
 def add_file(filepath):
     """
     Adds a person to the database given a picture of their face
