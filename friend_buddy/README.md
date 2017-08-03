@@ -1,0 +1,193 @@
+# Friend Buddy Alexa App
+
+FriendBuddy is an Alexa skill that automatically recognizes users by facd and keeps track of information and lists that individuals give to it.
+
+## Required modules:
+
+Install these modules before attempting to run FriendBuddy:
+
+ * pickle
+ * numpy
+ * [photo_buddy](https://github.com/spider-robinson/echo_buddy/tree/master/photo_buddy_pkg) and all required packages
+ * [ngrok](https://ngrok.com/ "ngrok information and download page")
+ * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
+
+## Setup
+
+Enter the [Alexa Skills Kit](https://developer.amazon.com/edw/home.html#/skills "Amazon's Alexa Skills Kit"), which requires an Amazon developer account.
+
+Add a new skill using the button in the upper right corner.
+
+Enter "FriendBuddy" as the name and "friend buddy" as the invocation name. Click the next button in the bottom right corner to proceed to the Interaction Model.
+
+Paste the following into the Intent Schema section in the Interaction Model:
+    
+  ```
+  {
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "prop",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "QueryPropertyIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "list_name",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "QueryListIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "value",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "PropertyIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "prop",
+          "type": "AMAZON.LITERAL"
+        },
+        {
+          "name": "value",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "DeclarePropertyIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "list_name",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "AddListIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "list_name",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "DeleteListIntent"
+    },
+    {
+      "intent": "NoIntent"
+    },
+    {
+      "intent": "YesIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "var_name",
+          "type": "AMAZON.LITERAL"
+        }
+      ],
+      "intent": "DeleteIntent"
+    }
+  ]
+}
+  ```
+  
+  And paste the following into Sample Utterances section in the Interaction Model:
+  ```
+  QueryPropertyIntent what is my {favorite color|prop}
+QueryPropertyIntent do you know my {middle name|prop}
+QueryListIntent tell me my {shopping|list_name} list
+QueryListIntent read out my {to do|list_name} list
+QueryListIntent what is my {schedule|list_name} list
+PropertyIntent {red|value}
+PropertyIntent {six eggs|value}
+PropertyIntent {doctor|value}
+PropertyIntent {zig zag|value}
+PropertyIntent {seventeen beads|value}
+PropertyIntent {knitting|value}
+PropertyIntent {yellow|value}
+PropertyIntent {rule one|value}
+PropertyIntent {quadruple a batteries|value}
+PropertyIntent {graphing calculators|value}
+PropertyIntent {the color yellow|value}
+PropertyIntent {write thank you note|value}
+PropertyIntent {Lilian|value}
+PropertyIntent {cat|value}
+PropertyIntent {mathematics|value}
+PropertyIntent {groundhogs|value}
+PropertyIntent {seven|value}
+PropertyIntent {level|value}
+DeclarePropertyIntent my {dog's name|prop} is {monkey|value}
+DeclarePropertyIntent my {favorite color|prop} is {green|value}
+DeclarePropertyIntent set {occupation|prop} to {car|value}
+AddListIntent add to {shopping|list_name} list
+AddListIntent add to {to do|list_name}
+AddListIntent update my list for {tomorrow|list_name}
+AddListIntent update my {bucket|list_name} list
+DeleteListIntent remove items from {shopping|list_name} list
+DeleteListIntent remove from {to do|list_name}
+DeleteListIntent delete items from {tomorrow|list_name} list
+DeleteListIntent delete from {bucket|list_name} list
+NoIntent no
+NoIntent never mind
+NoIntent nah
+NoIntent don't
+NoIntent do not
+NoIntent nope
+YesIntent yes
+YesIntent yep
+YesIntent yup
+YesIntent yeah
+DeleteIntent delete {shopping|var_name}
+DeleteIntent delete {favorite food|var_name}
+DeleteIntent reset {job|var_name}
+  ```
+  
+  Save the Interaction Model using the save button at the bottom of the page.
+  
+  Clone or download this folder. Navigate to the resulting directory.
+  
+  Run:
+  ```
+  python news_buddy.py
+  ```
+  
+  This will start a local host at port 5000.
+  
+  Use [ngrok](https://ngrok.com/ "ngrok information and download page") to create a tunnel to your local host by running
+  
+  ```
+  .\ngrok http 5000
+  ```
+  
+  In the Alexa Skills Kit, click Next on the Interaction Model tab to proceed to the Configuration tab.
+  
+  Select HTTPS as the Endpoint, then your location as the region closest to your target customer.
+  
+  Copy and paste the secure-url generated by ngrok into the box under Endpoint in the Configuration tab.
+  
+  Save the Configuration using the save button at the bottom of the page.
+  
+  Your Alexa skill is now ready to run.
+
+  
+## Usage
+
+Say "friend buddy" to trigger this skill.
+
+Say "my (propety) is (value)" to save a property (eg, save your favorite color)
+
+Say "do you know my (property)" or "what is my (property)" to query a property (eg, ask for your saved middle name) 
+
+Say "add (value) to my (list name)" to create or update a list
+
