@@ -25,6 +25,8 @@ Final project for Cogworks 2017 (Team Fantastic Four)
 * analogy buddy:
 
     an application that solves analogies using word embeddings
+    
+ To run an Alexa skill, run the Flask-ask app in the correct folder and create an ngrok tunnel to localhost:5000. Use the generated secure-url as the endpoint on the configuration tab. For individual instructions and intent schema, see the README files for each individual app.
         
  ## Contains Python packages for:
     
