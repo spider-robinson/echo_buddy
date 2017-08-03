@@ -1,5 +1,14 @@
 # Song Buddy Python package
 
+### Install these modules before attempting to run SongBuddy:
+
+ * pickle
+ * numpy
+ * scipy
+ * [librosa](https://github.com/LLCogWorks2017/Week1/issues/6 "librosa installation instructions")
+ * MatPlotLib
+ * [microphone](https://github.com/LLCogWorks2017/Microphone "Ryan Soklaski's Microphone module")
+
 ## Installation:
 
 Clone or download this folder.
