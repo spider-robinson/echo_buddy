@@ -7,7 +7,7 @@
  * MatPlotLib
  * [cloudinary](https://cloudinary.com/ "cloudinary infomration")
  * [DLibModels](https://github.com/LLCogWorks2017/DlibModels "Ryan Soklaski's DLibModels")
- * [camera](https://github.com/LLCogWorks2017/Camera "Ryan Soklaski's Camera module)
+ * [camera](https://github.com/LLCogWorks2017/Camera "Ryan Soklaski's Camera module")
  * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
 
 ## Setup
