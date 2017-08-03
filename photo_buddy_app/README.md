@@ -1,5 +1,15 @@
 # Photo Buddy Alexa App
 
+## Install these modules before attempting to run PhotoBuddy:
+
+ * pickle
+ * numpy
+ * [MatPlotLib](https://matplotlib.org/users/installing.html "MatPlotLib Installation)
+ * [cloudinary](https://cloudinary.com/ "cloudinary infomration")
+ * [DLibModels](https://github.com/LLCogWorks2017/DlibModels "Ryan Soklaski's DLibModels")
+ * [camera](
+ * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
+
 ## Setup
 
 Enter the [Alexa Skills Kit](https://developer.amazon.com/edw/home.html#/skills "Amazon's Alexa Skills Kit"), which requires an Amazon developer account.
