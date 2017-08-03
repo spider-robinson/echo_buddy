@@ -52,4 +52,4 @@ def question_three(query, k=3):
 if __name__ == '__main__':
     # main.initialize()
     News_Buddy.get_data()
-    app.run()
+    app.run(port=5007)

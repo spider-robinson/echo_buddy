@@ -117,4 +117,4 @@ def stop():
     return statement("Okay. Thanks anyway!")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5006, debug=True)

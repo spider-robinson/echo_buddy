@@ -112,4 +112,4 @@ def no():
 if __name__ == '__main__':
     add_flag = 0
     Face_Rec.initialize()
-    app.run()
+    app.run(port=5008)

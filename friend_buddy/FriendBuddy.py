@@ -241,4 +241,4 @@ def delete_var(var_name):
 
 if __name__ == '__main__':
     state = "Inactive"
-    app.run()
+    app.run(port=5005)

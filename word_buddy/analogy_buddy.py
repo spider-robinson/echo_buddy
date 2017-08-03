@@ -22,7 +22,7 @@ def homepage():
 
 @ask.launch
 def start_skill():
-    msg = "What analogy would you like me to solve?"
+    msg = "Hi, I'm Word Buddy. What question do you have for me?"
     return question(msg)
 
 def analogythis(thatone, thistwo, thattwo, k=3):
@@ -93,5 +93,11 @@ def solvethis(thisone, thistwo, thattwo):
     answer_msg = "{}, is to {}, as {}, is to, {}".format(thisone, thatone, thistwo, thattwo)
     return statement(answer_msg)
 
+@ask.intent("WordIntent")
+def tell_related(word):
+    answer = ", ".join(np.array(glove.wv.similar_by_word(word))[:,0])
+    msg = "The words most similar to, {}, are {}".format(word, answer)
+    return statement(msg)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5010, debug=True)
