@@ -4,10 +4,10 @@
 
  * pickle
  * numpy
- * [MatPlotLib](https://matplotlib.org/users/installing.html "MatPlotLib Installation)
+ * MatPlotLib
  * [cloudinary](https://cloudinary.com/ "cloudinary infomration")
  * [DLibModels](https://github.com/LLCogWorks2017/DlibModels "Ryan Soklaski's DLibModels")
- * [camera](
+ * [camera](https://github.com/LLCogWorks2017/Camera "Ryan Soklaski's Camera module)
  * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
 
 ## Setup
