@@ -14,10 +14,18 @@ Final project for Cogworks 2017 (Team Fantastic Four)
 * song buddy:
 
     an application that maintains a database of songs and uses them to identify snippets
+    
+* go buddy:
+    
+    an application that plays go using probablities and a Monte-Carlo Tree Search
+
+* friend buddy:
+
+    an application that automatically recognizes users and maintains lists and information for them 
 
 * game buddy:
 
-    contains several games, such as:
+    contains three games:
     * word association
     * hangman
     * ghost
@@ -25,6 +33,7 @@ Final project for Cogworks 2017 (Team Fantastic Four)
 * analogy buddy:
 
     an application that solves analogies using word embeddings
+
     
  To run an Alexa skill, run the Flask-ask app in the correct folder and create an ngrok tunnel to localhost:5000. Use the generated secure-url as the endpoint on the configuration tab of the Alexa Skill Builder. For individual instructions and intent schema, see the README files for each individual app.
         
