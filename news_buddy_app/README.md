@@ -1,5 +1,20 @@
 # News Buddy Alexa App
 
+## Required modules:
+
+Install these modules before attempting to run NewsBuddy:
+
+ * pickle
+ * nltk, make sure you have:
+ 
+    * word_tokenize
+    * sent_tokenize
+    * pos_tag
+    * ne_chunk
+ 
+ * ngrok
+ * Flask-ask
+
 ## Setup
 
 Enter the [Alexa Skills Kit](https://developer.amazon.com/edw/home.html#/skills "Amazon's Alexa Skills Kit"), which requires an Amazon developer account.
