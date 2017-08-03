@@ -1,5 +1,14 @@
 # Photo Buddy Python package
 
+### Install these modules before attempting to run PhotoBuddy:
+
+ * pickle
+ * numpy
+ * MatPlotLib
+ * [cloudinary](https://cloudinary.com/ "cloudinary infomration")
+ * [DLibModels](https://github.com/LLCogWorks2017/DlibModels "Ryan Soklaski's DLibModels")
+ * [camera](https://github.com/LLCogWorks2017/Camera "Ryan Soklaski's Camera module")
+
 ## Installation:
 
 Clone or download this folder.
