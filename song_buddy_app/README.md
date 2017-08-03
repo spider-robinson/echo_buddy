@@ -1,4 +1,16 @@
-# Song Buddy Alexa App
+# Song Buddy Alexa Skill
+
+### Install these modules before attempting to run SongBuddy:
+
+ * pickle
+ * numpy
+ * scipy
+ * [librosa](https://github.com/LLCogWorks2017/Week1/issues/6 "librosa installation instructions")
+ * MatPlotLib
+ * [microphone](https://github.com/LLCogWorks2017/Microphone "Ryan Soklaski's Microphone module")
+ * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
+ * [ngrok](https://ngrok.com/ "ngrok information and download page")
+
 
 ## Setup
 
