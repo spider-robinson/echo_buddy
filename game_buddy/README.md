@@ -8,7 +8,7 @@ Install these modules before attempting to run FriendBuddy:
 
  * pickle
  * numpy
- * [nltk](http://www.nltk.org/) and its words corpus (install the words corpus using `python nltk.download`)
+ * [nltk](http://www.nltk.org/) and its words corpus (install the words corpus by running `import nltk` and then `nltk.download()` in a python environment)
  * [glove](https://www.dropbox.com/s/c6m006wzrzb2p6t/glove.6B.50d.txt.w2v.zip?dl=0)
  * [ngrok](https://ngrok.com/ "ngrok information and download page")
  * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
