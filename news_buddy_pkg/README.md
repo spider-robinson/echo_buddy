@@ -1,5 +1,18 @@
 # News Buddy Python package
 
+## Required modules:
+
+Install these modules before attempting to run NewsBuddy:
+
+ * pickle
+ * nltk, make sure you have:
+ 
+    * word_tokenize
+    * sent_tokenize
+    * pos_tag
+    * ne_chunk
+  
+
 # Installation:
 
 Clone or download this folder.
