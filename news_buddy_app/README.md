@@ -5,15 +5,15 @@
 Install these modules before attempting to run NewsBuddy:
 
  * pickle
- * nltk, make sure you have:
+ * [nltk](https://www.nltk.org/ "nltk information page"), make sure you have:
  
     * word_tokenize
     * sent_tokenize
     * pos_tag
     * ne_chunk
  
- * ngrok
- * Flask-ask
+ * [ngrok](https://ngrok.com/ "ngrok information and download page")
+ * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
 
 ## Setup
 
