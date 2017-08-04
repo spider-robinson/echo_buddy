@@ -36,7 +36,7 @@ def start_hangman():
         global game_state
         game = "Hangman"
         game_state = hangman.Hangman()
-        print("made game")
+        print("made " + game)
         return question(game_state.start_hint())
     return question("I misheard you. Please try again")
 
@@ -44,6 +44,8 @@ def start_hangman():
 def get_letter(letter):
     global game
     print(game)
+    if letter.lower() == "victor":
+        letter = "v"
     print("you said " + letter)
     if game == "Hangman":
         letter = letter[0]
@@ -61,10 +63,12 @@ def get_letter(letter):
         msg = game_state.take_turn(letter)
         print("I say " + msg)
         if len(letter) == 1:
-            if letter == u:
+            if letter == "u":
                 letter = "you"
+            if letter == "c":
+                letter = "sea"
             else:
-                return(question(letter + "isn't a word. Try again. The word was " + word_association.word))
+                return(question(letter + "isn't a word. Try agian."))
         if msg[-1] == '!':
             game = None
             return question(msg + "What other game would you like to play?")
@@ -72,13 +76,15 @@ def get_letter(letter):
             return question(msg)
     elif game == "Ghost":
         letter = letter[0]
+        print("I say: ", letter)
         msg = game_state.take_turn(letter)
+        print(msg)
         if msg[-1] == "!":
             game = None
             return question(msg + "What other game would you like to play?")
         else:
             return question(msg)
-    else:
+    elif game is None:
         if letter == "nothing":
             print("stopping")
             return statement("Okay. Thanks anyway!")
@@ -96,7 +102,7 @@ def start_word_assoc(seed, level):
             level = 1
         game = "Word Association"
         game_state = word_association.Word_Association(seed=seed, level=level)
-        print("made game")
+        print("made " + game)
         return question(game_state.start())
     return question("I misheard you. Please try again")
 
@@ -106,8 +112,8 @@ def start_ghost():
     if game == None:
         global game_state
         game = "Ghost"
-        game_state = ghost.ghost()
-        print("made game")
+        game_state = ghost.Ghost()
+        print("made Ghost")
         return question("Let's play Ghost! The first letter is " + game_state.first_turn())
     return question("I misheard you. Please try again")
 

@@ -13,7 +13,7 @@ name = None
 
 @app.route('/')
 def homepage():
-    return render_template("index.html")
+    return "PhotoBuddy" # render_template("index.html")
 
 @ask.launch
 def start_skill():
@@ -46,13 +46,27 @@ def photo():
         nones = len(names) - np.count_nonzero(names) # Number of unidentifiable faces
         identified_names = names[names != np.array(None)] # Filters Nones out of list
 
+        if ul is not None:
+            ul = ul.split("/")
+            ul_small = "/".join(ul[:-2] + ["c_fill,h_360,w_540"] + ul[-2:])
+            ul_large = "/".join(ul[:-2] + ["c_fill,h_600,w_900"] + ul[-2:])
+        else:
+            ul_small = None
+            ul_large = None
+
         # Responses
         if len(names) < 1:
             return statement("I do not see anyone.")
         if len(identified_names) < 1 or identified_names[0] is None:
             if nones > 1:
-                return statement("I see " + str(nones) + " unknown faces.")
-            return statement("I see one unknown face.")
+                msg = "I see " + str(nones) + " unknown faces."
+            else:
+                msg = "I see one unknown face."
+            return statement(msg) \
+                .standard_card(title="I see...",
+                               text=msg,
+                               small_image_url=ul_small,
+                               large_image_url=ul_large)
         if len(identified_names) == 1:
             if nones > 0:
                 if nones > 1:
@@ -62,8 +76,8 @@ def photo():
                 return statement("I see " + msg) \
                     .standard_card(title="I see...",
                                    text=msg,
-                                   small_image_url=ul,
-                                   large_image_url=ul)
+                                   small_image_url=ul_small,
+                                   large_image_url=ul_large)
             else:
                 msg = identified_names[0]
                 add_flag = 1
@@ -73,8 +87,8 @@ def photo():
                 return question("I see " + msg + ". Would you like to add this to the database?") \
                     .standard_card(title="I see...",
                                    text=msg,
-                                   small_image_url=ul,
-                                   large_image_url=ul)
+                                   small_image_url=ul_small,
+                                   large_image_url=ul_large)
         if nones > 0:
             if nones > 1:
                 msg = ", ".join(identified_names) + ", and " + str(nones) + "unknown faces."
@@ -85,8 +99,8 @@ def photo():
         return statement("I see " + msg) \
             .standard_card(title="I see...",
                            text=msg,
-                           small_image_url=ul,
-                           large_image_url=ul)
+                           small_image_url=ul_small,
+                           large_image_url=ul_large)
         # END RESPONSES
     else:
         """
@@ -112,4 +126,4 @@ def no():
 if __name__ == '__main__':
     add_flag = 0
     Face_Rec.initialize()
-    app.run(port=5008)
+    app.run(port=5008, debug=True)

@@ -18,7 +18,7 @@ import cloudinary.api
 
 
 load_dlib_models()
-save_camera_config(port=1, exposure=0.7)
+save_camera_config(port=0, exposure=0.9)
 
 _path = Path(path.dirname(path.abspath(__file__)))
 
@@ -37,9 +37,15 @@ DATABASE_FR = "data/facial_features.txt"
 
 # creates data file if it doesn't exist
 if not os.path.exists(DATABASE_FR):
-        os.makedirs('/'.join(str.partition(DATABASE_FR, "/")[:-1]))
-        with open(DATABASE_FR, "w+"):
-            pass
+    os.makedirs('/'.join(str.partition(DATABASE_FR, "/")[:-1]))
+    with open(DATABASE_FR, "w+"):
+        pass
+
+# creates static folder if it doesn't exist
+if not os.path.exists("static"):
+    os.makedirs("static")
+    with open("static", "w+"):
+        pass
 
 def get_img_from_camera():
     """
@@ -193,7 +199,7 @@ def is_face(test_desc, profile_mean, threshold):
         return l2d
     return None
 
-def identify_face(desc, database, threshold=0.5, face_thres=0):
+def identify_face(desc, database, threshold=0.45, face_thres=0):
     """
     Compares a test descriptor to all faces in a database and determines the best match, if any.
 
@@ -298,28 +304,26 @@ def add_image(descriptor, name=None):
     """
     global db
     if name != None:
-        old_descriptor_list = list(db.get(name))[0]
-
-        old_descriptor_list.append(descriptor)
-
-        new_list = old_descriptor_list
-
-        num_descriptors = len(new_list)
-
-        temp_arr = np.array(new_list)
-
-        new_mean = np.sum(temp_arr) / num_descriptors
-
-        db[name] = [new_list, new_mean]
-
+        db[name][0].append(descriptor)
+        
+        new_mean = np.sum(np.array(db[name][0]), axis=0)/len(db[name][0])
+    
+        db[name][1] = new_mean
+    
     if name == None:
         the_name = input("Please enter your name: ")
-
-        if the_name in db:
-            add_image(descriptor, name=the_name)
-        else:
-            
-            db[the_name] = [[descriptor], descriptor]
+        
+        the_descriptors = []
+        the_descriptors.append(descriptor)
+        
+        db[the_name] = [the_descriptors]
+        
+        mean_val = descriptor
+        
+        db[the_name].append(mean_val)
+        
+    write_database()
+        
 
 def clear_database(password):
 
@@ -384,12 +388,16 @@ def identify(save=True, force_input=False, from_file=False):
         img = get_img_from_camera()
         dets = find_faces(img)
         descs = find_descriptors(img, dets)
+        names = compare_faces(descs, db, threshold=0.45)
+        print(names)
     else:
         filepath = input('Please enter the location (filepath) of the image: ')
         img = get_img_from_file(filepath)
         dets = find_faces(img)
         descs = find_descriptors(img, dets)
-        names = compare_faces(descs, db, threshold=0.4)
+        names = compare_faces(descs, db, threshold=0.45)
+        print(names)
+
     if save:
         if len(descs) > 1:
             print("Cannot add multiple people at once.")
@@ -400,6 +408,7 @@ def identify(save=True, force_input=False, from_file=False):
                 add_image(descs[0])
             else:
                 add_image(descs[0], name=names[0])
+        write_database()
     draw_faces(dets, names, img)
     return names
 
@@ -502,4 +511,6 @@ try:
     db = retrieve_database()
 except EOFError: # if the file is empty!
     db = {}
-    write_database(filepath=DATABASE_FR)
+    write_database(filepath=DATABASE_FR) 
+
+print(db.keys())

@@ -174,6 +174,8 @@ def remove_from_list(profile_name, list_name, items):
     if list_name not in database[profile_name] or not isinstance(database[profile_name][list_name], list):
         return False
     for i in items:
+        if i not in database[profile_name][list_name]:
+            continue
         database[profile_name][list_name].remove(i)
     return True
 

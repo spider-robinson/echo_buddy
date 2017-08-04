@@ -162,11 +162,12 @@ class Ghost:
         Resets the game in order to replay it
         """
         self.string = ""
-                    
-game = Ghost()
-msg = game.first_turn()
-print(msg)
-while not msg[-1] == "!":
-    guess = input("Guess a letter: ")
-    msg = game.take_turn(guess)
+        
+def play():                    
+    game = Ghost()
+    msg = game.first_turn()
     print(msg)
+    while not msg[-1] == "!":
+        guess = input("Guess a letter: ")
+        msg = game.take_turn(guess)
+        print(msg)

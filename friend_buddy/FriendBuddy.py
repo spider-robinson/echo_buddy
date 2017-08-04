@@ -140,6 +140,10 @@ def define_property(value):
         profile.add_to_list(name, temp, [value])
         profile.write_database()
         return question("Added " + value + ". Anything else?")
+    if state == "Delete from list":
+        profile.remove_from_list(name, temp, [value])
+        profile.write_database()
+        return question("Removed " + value + ". Anything else?")
     return question("I'm sorry, I don't understand. Please try again.")
 
 
@@ -187,6 +191,30 @@ def add_list(list_name):
     temp = list_name
     state = "Add list"
     return question("Please tell me the first thing you want to add.")
+
+
+@ask.intent("DeleteListIntent")
+def add_list(list_name):
+    """
+    Deletes items from a list.
+
+    Parameters
+    ----------
+    list_name: String
+        name of list
+
+    Returns
+    -------
+    question
+
+    """
+    global temp
+    global state
+    if list_name in profile.database[name] and not isinstance(profile.database[name][list_name], list):
+        return question(list_name + " is not a list! Say delete " + list_name + " to reset it. Anything else?")
+    temp = list_name
+    state = "Delete from list"
+    return question("Please tell me the first thing you want to remove.")
 
 
 @ask.intent("YesIntent")

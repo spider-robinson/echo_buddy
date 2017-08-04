@@ -2,6 +2,7 @@ from flask import Flask
 from flask_ask import Ask, question, statement
 
 import News_Buddy
+import time
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -20,26 +21,27 @@ def start_skill():
 
 @ask.intent("GetTopic")
 def question_one(topic):
-    results = main.q1(topic)
+    results = News_Buddy.news_about(topic)
     if results is None:
         return statement("I couldn't find anything.")
     return statement("I found this: " + results)
 
 
 @ask.intent("GetEntity")
-def question_two(entity, k=3):
-    main.get_data()
+def question_two(entity, k):
+    t0 = time.time()
     result = News_Buddy.related_entities(entity, k=k)
     if result is None:
         return statement("I couldn't find anything.")
-    top_results = [i[0] for i in result]
+    top_results = list(list(zip(*result))[0])
+    print(time.time() - t0)
     results = ", ".join(top_results)
     msg = "Most associated with " + entity + ": " + results
     return statement(msg)
 
 
 @ask.intent("ThirdIntent")
-def question_three(query, k=3):
+def question_three(query, k):
     result = News_Buddy.entities_about(query, k=k)
     if result is None:
         return statement("I couldn't find anything.")

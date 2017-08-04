@@ -19,10 +19,11 @@ __all__ = ['get_text', 'collect', 'get_articles', 'tokenize', 'for_ner'
 'common_entities', 'collect_articles', 'get_data', 'initialize', 'clear_database',
 'news_about', 'entities_related', 'entities_about']
 
-DATABASE_FR = "data/search_engine_data.txt"
+DATABASE_SE = "data/search_engine_data.txt"
+DATABASE_FR = "data/ner.txt"
 
 # creates data file if it doesn't exist
-if not os.path.exists(DATABASE_FR):
+if not os.path.exists(DATABASE_FR) and not os.path.exists(DATABASE_SE):
         os.makedirs('/'.join(str.partition(DATABASE_FR, "/")[:-1]))
         with open(DATABASE_FR, "w+"):
             pass
@@ -690,7 +691,7 @@ def clear_database(filepath=DATABASE_FR):
     with open(filepath, "wb") as f:
         pickle.dump(db, f)
 
-def top_related(entity, k=None):
+def top_related(entity, k):
     """
     Finds the k entities most closely related to the query (an entity itself)
     
@@ -784,7 +785,7 @@ def news_about(topic):
     return s_e.first_sent_highest_doc(topic)
 
 
-def related_entities(ent, k=3):
+def related_entities(ent, k):
     """
     Returns the top k entities associated with ent.
 
@@ -806,7 +807,7 @@ def related_entities(ent, k=3):
     return top_related(ent.lower(), k=k)
 
 
-def entities_about(query, k=3):
+def entities_about(query, k):
     """
     Returns the top k entities associated with a query.
 
