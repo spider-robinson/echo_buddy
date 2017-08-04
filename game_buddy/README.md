@@ -140,12 +140,12 @@ NoIntent i don't want to play
   python GameBuddy.py
   ```
   
-  This will start a local host at port 5000.
+  This will start a local host at port 5006.
   
   Use [ngrok](https://ngrok.com/ "ngrok information and download page") to create a tunnel to your local host by running
   
   ```
-  .\ngrok http 5000
+  .\ngrok http 5006
   ```
   
   In the Alexa Skills Kit, click Next on the Interaction Model tab to proceed to the Configuration tab.
@@ -165,6 +165,6 @@ Say "game buddy" to trigger this skill.
 
 Say the name of a game to start the game.
 
-Say "no" or "stop" or "nothing" to end a game.
+Say "I don't want to play anymore" to end a game.
 
 Say a letter or word (depending on the game you're playing) to take your turn.
