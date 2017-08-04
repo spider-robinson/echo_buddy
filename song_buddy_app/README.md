@@ -6,11 +6,25 @@
  * numpy
  * scipy
  * [librosa](https://github.com/LLCogWorks2017/Week1/issues/6 "librosa installation instructions")
+ * [song_buddy](https://github.com/spider-robinson/echo_buddy/tree/master/song_buddy_pkg)
  * MatPlotLib
  * [microphone](https://github.com/LLCogWorks2017/Microphone "Ryan Soklaski's Microphone module")
  * [Flask-ask](https://flask-ask.readthedocs.io/en/latest/ "Flask-ask information and download page")
  * [ngrok](https://ngrok.com/ "ngrok information and download page")
+ 
+ ### Create your database of songs
+ 
+ Create a folder called `audio` in the directory cloned from song_buddy_pkg with the `__init__.py`
+ 
+ Add this line of code at the end of the `__init__.py` file in the song_buddy_pkg:
+ 
+ ```
+ train()
+ ```
 
+Run `python __init__.py` in the terminal from the directory containing the `__init__.py` file
+
+__Remember to remove `train()` from the file before running the app__
 
 ## Setup
 
