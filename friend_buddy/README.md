@@ -162,12 +162,12 @@ DeleteIntent reset {job|var_name}
   python news_buddy.py
   ```
   
-  This will start a local host at port 5000.
+  This will start a local host at port 5005.
   
   Use [ngrok](https://ngrok.com/ "ngrok information and download page") to create a tunnel to your local host by running
   
   ```
-  .\ngrok http 5000
+  .\ngrok http 5005
   ```
   
   In the Alexa Skills Kit, click Next on the Interaction Model tab to proceed to the Configuration tab.
@@ -189,5 +189,12 @@ Say "my (propety) is (value)" to save a property (eg, save your favorite color)
 
 Say "do you know my (property)" or "what is my (property)" to query a property (eg, ask for your saved middle name) 
 
-Say "add (value) to my (list name)" to create or update a list
+Say "add to my (list name) list" to create or update a list; Friend Buddy will ask for values one by one.
+
+Say "remove from my (list name) list" to remove items; Friend Buddy will ask for values to remove one by one.
+
+Say "delete my (property)" to delete a property 
+
+Say "delete my (list name) list" to delete a whole list 
+
 
