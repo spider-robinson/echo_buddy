@@ -116,12 +116,12 @@ WordIntent give me words similar to {sun|word}
   python news_buddy.py
   ```
   
-  This will start a local host at port 5000.
+  This will start a local host at port 5010.
   
   Use [ngrok](https://ngrok.com/ "ngrok information and download page") to create a tunnel to your local host by navigating to the folder in which you installed ngrok and then running
   
   ```
-  .\ngrok http 5000
+  .\ngrok http 5010
   ```
   
   In the Alexa Skills Kit, click Next on the Interaction Model tab to proceed to the Configuration tab.
