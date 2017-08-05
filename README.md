@@ -33,7 +33,7 @@ an application that maintains a database of facial features and uses them to ide
     
 * go buddy:
     
-    an application that plays Go using probablities and a Monte-Carlo Tree Search
+    an artificial intelligence that plays Go using either a Monte Carlo Tree Search or a Convolutional Neural Network.
 
 
     
