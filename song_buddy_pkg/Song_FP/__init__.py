@@ -2,8 +2,8 @@ import itertools
 import collections
 import pickle
 import librosa
-from os import path, listdir, makedirs
-from os.path import isfile, join, exists
+from os import path, listdir
+from os.path import isfile, join
 from pathlib import Path
 from microphone import record_audio
 import matplotlib.mlab as mlab
@@ -18,11 +18,6 @@ DATABASE_FP = "data/song_features.txt"
 __all__ = ["Song", 'record' , 'spectrogram', 'get_recording', 'find_peaks', 'find_fingerprint', 'get_matches', 'best_match', 
 'train_single', 'train', 'identify', 'retrieve_database', 'write_database', 'add_song', 'get_songs_from_db', 
 'retrieve_song_features', 'display_songs', 'get_song_object', 'remove_song', 'clear_database', 'initialize']
-
-if not exists(DATABASE_FP):
-        makedirs('/'.join(str.partition(DATABASE_FP, "/")[:-1]))
-        with open(DATABASE_FP, "w+"):
-            pass
 
 class Song:
     """This Song class is useful for storing songs in our database as objects and allows for quick retrieval of the song's name,
@@ -404,9 +399,5 @@ def initialize():
     """Automatically retrieves database."""
     global database
     database = retrieve_database()
-
-try:    
-    initialize()
-except EOFError: # if the file is empty!
-    database = {}
-    write_database(filepath=DATABASE_FP)
+    display_songs()
+    return database

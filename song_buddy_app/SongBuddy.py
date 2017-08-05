@@ -1,14 +1,12 @@
 from flask import Flask
 from flask_ask import Ask, statement, question
-import requests
 from Song_FP import *
+import song_class
 
 app = Flask(__name__)
 ask = Ask(app, '/')
 
-initialize()
-global database
-database = retrieve_database()
+database = {}
 
 @app.route('/')
 def homepage():
@@ -23,7 +21,7 @@ def start_skill():
 @ask.intent("YesIntent")
 def identify_song():
     print("Starting identify")
-    global identitfy
+    global identify
     result = identify()
     print("Got result")
     if result is not None:
@@ -37,4 +35,5 @@ def goodbye():
     return statement("Okay. Have a good day!")
 
 if __name__ == '__main__':
-    app.run(port=5009, debug=True)
+    database = initialize()
+    app.run(debug=True, port=5009)
